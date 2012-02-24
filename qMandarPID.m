@@ -2,7 +2,7 @@ function qMandarPID(block)
 % Level-2 MATLAB file S-Function for unit delay demo.
 %   Copyright 1990-2009 The MathWorks, Inc.
 %   $Revision: 1.1.6.2 $ 
-global qConeccionOUT;
+
 
   setup(block);
 
@@ -37,6 +37,7 @@ function setup(block)
   block.RegBlockMethod('InitializeConditions',    @InitConditions);  
   block.RegBlockMethod('Outputs',                 @Output);  
   block.RegBlockMethod('Update',                  @Update);  
+  block.RegBlockMethod('Terminate',               @Terminate);  
   
 %endfunction
 
@@ -56,6 +57,8 @@ function InitConditions(block)
 
   %% Initialize Dwork
   global qConeccionOUT;
+  global ConnState;
+  
   if (block.DialogPrm(1).Data~=1)
       host = block.DialogPrm(1).Data;
       puerto = block.DialogPrm(2).Data;
@@ -65,6 +68,9 @@ function InitConditions(block)
       catch me
         warndlg(me.message, 'Warning');
       end
+      
+      ConnState = 'REGISTERING';
+      
   end
   
   
@@ -72,22 +78,35 @@ function InitConditions(block)
 
 function Output(block)
 
-  %block.OutputPort(1).Data = block.Dwork(1).Data;
+  
   global qConeccionOUT;
+  global ConnState;
   
-  mandar    = block.Dwork(1).Data(6);
   
-  if mandar
+  if strcmp(qConeccionOUT.Status,'open')  
       
-      Kp        = block.Dwork(1).Data(1);
-      Ki        = block.Dwork(1).Data(2);
-      Kd        = block.Dwork(1).Data(3);
-      SetPoint  = block.Dwork(1).Data(4);
-      Bias      = block.Dwork(1).Data(5);
+      if strcmp(ConnState, 'REGISTERING')
+          disp('Registrando');
+          fwrite(qConeccionOUT,['PID' 13 10])
+          ConnState = 'STREAMING';
+      else
+  
+          mandar    = block.Dwork(1).Data(6);
+
+          if mandar
+
+              Kp        = block.Dwork(1).Data(1);
+              Ki        = block.Dwork(1).Data(2);
+              Kd        = block.Dwork(1).Data(3);
+              SetPoint  = block.Dwork(1).Data(4);
+              Bias      = block.Dwork(1).Data(5);
 
 
-      mensaje=qFormatearPID_OUT(Kp, Ki, Kd, SetPoint, Bias);
-      fprintf(qConeccionOUT, mensaje);
+              mensaje=qFormatearPID_OUT(Kp, Ki, Kd, SetPoint, Bias);
+              fprintf(qConeccionOUT, mensaje);
+              
+          end
+      end
   end
   
 %endfunction
@@ -95,6 +114,7 @@ function Output(block)
 function Update(block)
     
   mandar = false;
+  
   for k=1:5         %5 valores estamos mandando
       dataOld       = block.Dwork(1).Data(k);
       dataNew       = block.InputPort(k).Data;
@@ -110,3 +130,7 @@ function Update(block)
   
 %endfunction
 
+function Terminate(block) %#ok<INUSD>
+
+global qConeccionOUT
+fclose (qConeccionOUT);

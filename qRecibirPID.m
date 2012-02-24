@@ -1,4 +1,4 @@
-function recibirPID(block)
+function qRecibirPID(block)
 % Level-2 MATLAB file S-Function for unit delay demo.
 %   Copyright 1990-2009 The MathWorks, Inc.
 %   $Revision: 1.1.6.2 $ 
@@ -82,10 +82,9 @@ function InitConditions(block)
         warndlg(me.message, 'Warning');
       end
       ConnState = 'REGISTERING';
-      %fprintf(qConeccionIN,['TELEMETRY' 10])
+     
   end
-  
-  
+    
 %endfunction
 
 function Output(block)
@@ -100,7 +99,7 @@ function Output(block)
           ConnState = 'STREAMING';
           readasync(qConeccionIN);
       else
-          %disp('Streaming!');
+          disp('Streaming!');
           dataDisponible=false;
           if (qConeccionIN.BytesAvailable>=26)
               [dataDisponible, valor]=qFormatearPID_IN(qConeccionIN);
@@ -112,26 +111,16 @@ function Output(block)
               end
          end
       end
-      %{
-      [dataDisponible, valor]=qFormatearPID_IN(qConeccionIN);
-      valor
-      if dataDisponible
-          for k=1:5                 %block.NumOutputPorts      
-            block.OutputPort(k).Data = valor(k);
-          end
-          block.OutputPort(6).Data = toc;
-      end
-      %}
+
   end   
 %endfunction
 
-function Update(block)
-
+function Update(block) %#ok<INUSD>
 
   %x=block.InputPort(1).Data;
   
 %endfunction
 
-function Terminate(block)
+function Terminate(block) %#ok<INUSD>
 global qConeccionIN;
 fclose(qConeccionIN);
