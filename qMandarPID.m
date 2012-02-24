@@ -3,8 +3,9 @@ function qMandarPID(block)
 %   Copyright 1990-2009 The MathWorks, Inc.
 %   $Revision: 1.1.6.2 $ 
 global qConeccionOUT;
+
   setup(block);
-tic;  
+
 %endfunction
 
 function setup(block)
@@ -44,7 +45,7 @@ function DoPostPropSetup(block)
   %% Setup Dwork
   block.NumDworks = 1;
   block.Dwork(1).Name = 'x0'; 
-  block.Dwork(1).Dimensions      = 1;
+  block.Dwork(1).Dimensions      = 6;
   block.Dwork(1).DatatypeID      = 0;
   block.Dwork(1).Complexity      = 'Real';
   block.Dwork(1).UsedAsDiscState = true;
@@ -72,22 +73,40 @@ function InitConditions(block)
 function Output(block)
 
   %block.OutputPort(1).Data = block.Dwork(1).Data;
+  global qConeccionOUT;
+  
+  mandar    = block.Dwork(1).Data(6);
+  
+  if mandar
+      
+      Kp        = block.Dwork(1).Data(1);
+      Ki        = block.Dwork(1).Data(2);
+      Kd        = block.Dwork(1).Data(3);
+      SetPoint  = block.Dwork(1).Data(4);
+      Bias      = block.Dwork(1).Data(5);
+
+
+      mensaje=qFormatearPID_OUT(Kp, Ki, Kd, SetPoint, Bias);
+      fprintf(qConeccionOUT, mensaje);
+  end
   
 %endfunction
 
 function Update(block)
-
-global qConeccionOUT;
-  
-  
-  Kp=block.InputPort(1).Data;
-  Ki=block.InputPort(2).Data;
-  Kd=block.InputPort(3).Data;
-  Bias=block.InputPort(4).Data;
-  t=toc;
     
-  mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias, t);
-  fprintf(qConeccionOUT, mensaje);
+  mandar = false;
+  for k=1:5         %5 valores estamos mandando
+      dataOld       = block.Dwork(1).Data(k);
+      dataNew       = block.InputPort(k).Data;
+        if (dataOld~=dataNew)
+            block.Dwork(1).Data(k) = dataNew;
+            mandar = true;
+        end
+  end
+  
+  block.Dwork(1).Data(6) = mandar;
+
+
   
 %endfunction
 
