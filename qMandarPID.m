@@ -13,7 +13,7 @@ function setup(block)
   block.NumDialogPrms  = 2;
   
   %% Register number of input and output ports
-  block.NumInputPorts  = 4;
+  block.NumInputPorts  = 5;
   block.NumOutputPorts = 0;
 
   %% Setup functional port properties to dynamically
