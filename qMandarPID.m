@@ -14,7 +14,7 @@ function setup(block)
   
   %% Register number of input and output ports
   block.NumInputPorts  = 5;
-  block.NumOutputPorts = 0;
+  block.NumOutputPorts = 1;
 
   %% Setup functional port properties to dynamically
   %% inherited.
@@ -108,6 +108,7 @@ function Output(block)
           end
       end
   end
+   block.OutputPort(1).Data=block.Dwork(1).Data(6);
   
 %endfunction
 

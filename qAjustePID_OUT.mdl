@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.17"
+    ComputedModelVersion    "1.19"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 24 11:22:19 2012"
-  RTWModifiedTimeStamp	  251981816
-  ModelVersionFormat	  "1.%<AutoIncrement:17>"
+  LastModifiedDate	  "Fri Feb 24 11:34:25 2012"
+  RTWModifiedTimeStamp	  251984064
+  ModelVersionFormat	  "1.%<AutoIncrement:19>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -769,7 +769,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "100"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "41"
+    SIDHighWatermark	    "42"
     Block {
       BlockType		      Reference
       Name		      "Bias"
@@ -924,7 +924,7 @@ Model {
       BlockType		      M-S-Function
       Name		      "Level-2 MATLAB\nS-Function"
       SID		      "13"
-      Ports		      [5]
+      Ports		      [5, 1]
       Position		      [525, 95, 665, 375]
       DropShadow	      on
       FunctionName	      "qMandarPID"
@@ -942,7 +942,8 @@ Model {
       MaskVisibilityString    "on,on"
       MaskToolTipString	      "on,on"
       MaskDisplay	      "port_label('input', 1, 'Kp');\nport_label('input', 2, 'Ki');\nport_label('input', 3, 'Kd');\n"
-      "port_label('input', 4, 'SetPoing');\nport_label('input', 5, 'Bias');\n\nfprintf('qMandarPID');"
+      "port_label('input', 4, 'SetPoing');\nport_label('input', 5, 'Bias');\nport_label('output', 1, 'Mandar');\n\nfpri"
+      "ntf('qMandarPID');"
       MaskIconFrame	      on
       MaskIconOpaque	      on
       MaskIconRotate	      "none"
@@ -980,7 +981,7 @@ Model {
       Ports		      [1]
       Position		      [765, 534, 795, 566]
       Floating		      off
-      Location		      [910, 466, 1234, 705]
+      Location		      [1, 45, 1281, 769]
       Open		      on
       NumInputPorts	      "1"
       List {
@@ -1049,7 +1050,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      sw		      "0"
+      sw		      "1"
       action		      "0"
       varsize		      off
     }
@@ -1058,6 +1059,27 @@ Model {
       Name		      "Terminator"
       SID		      "27"
       Position		      [155, 40, 175, 60]
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "mandar"
+      SID		      "42"
+      Ports		      [1]
+      Position		      [765, 219, 795, 251]
+      Floating		      off
+      Location		      [910, 466, 1234, 705]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "10"
+      YMin		      "0"
+      YMax		      "200"
+      SaveName		      "ScopeData1"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Line {
       SrcBlock		      "Constant"
@@ -1201,6 +1223,12 @@ Model {
       SrcBlock		      "Constant5"
       SrcPort		      1
       DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Level-2 MATLAB\nS-Function"
+      SrcPort		      1
+      DstBlock		      "mandar"
       DstPort		      1
     }
   }
