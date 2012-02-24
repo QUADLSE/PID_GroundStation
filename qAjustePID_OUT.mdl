@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.19"
+    ComputedModelVersion    "1.20"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 24 11:34:25 2012"
+  LastModifiedDate	  "Fri Feb 24 11:37:10 2012"
   RTWModifiedTimeStamp	  251984064
-  ModelVersionFormat	  "1.%<AutoIncrement:19>"
+  ModelVersionFormat	  "1.%<AutoIncrement:20>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -755,7 +755,7 @@ Model {
   }
   System {
     Name		    "qAjustePID_OUT"
-    Location		    [107, 97, 1009, 742]
+    Location		    [107, 97, 933, 742]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -1050,7 +1050,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      sw		      "1"
+      sw		      "0"
       action		      "0"
       varsize		      off
     }
@@ -1067,8 +1067,8 @@ Model {
       Ports		      [1]
       Position		      [765, 219, 795, 251]
       Floating		      off
-      Location		      [910, 466, 1234, 705]
-      Open		      off
+      Location		      [944, 421, 1268, 660]
+      Open		      on
       NumInputPorts	      "1"
       List {
 	ListType		AxesTitles
