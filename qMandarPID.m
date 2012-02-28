@@ -98,7 +98,7 @@ function Output(block)
               Bias      = block.Dwork(1).Data(5);
 
 
-              mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias);
+              mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias, SetPoint);
               fwrite(qConeccionOUT, mensaje, 'float32');
               fwrite(qConeccionOUT, [13 10]);
               

@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.21"
+    ComputedModelVersion    "1.22"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 28 16:02:51 2012"
+  LastModifiedDate	  "Tue Feb 28 16:25:31 2012"
   RTWModifiedTimeStamp	  252345757
-  ModelVersionFormat	  "1.%<AutoIncrement:21>"
+  ModelVersionFormat	  "1.%<AutoIncrement:22>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -790,8 +790,8 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "10"
-      high		      "20"
+      gain		      "32.3333"
+      high		      "33.3333"
     }
     Block {
       BlockType		      BusCreator
@@ -874,7 +874,7 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "7"
+      gain		      "5"
       high		      "20"
     }
     Block {
@@ -896,7 +896,7 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "30"
+      gain		      "2"
       high		      "50"
     }
     Block {
@@ -918,7 +918,7 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "20"
+      gain		      "1"
       high		      "20"
     }
     Block {
@@ -1051,7 +1051,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      sw		      "0"
+      sw		      "1"
       action		      "0"
       varsize		      off
     }
