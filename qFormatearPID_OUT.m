@@ -1,4 +1,4 @@
-function mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias, t)
+function mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias)
 % formatea el mensaje para ser enviado al ajuste de PID
 % la x al principio es porque el server de python se come el primer byte...
 %% mensaje python
@@ -8,4 +8,5 @@ function mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias, t)
 
 %% mensaje \n
 % para debuggear en matlab se usa \n como terminador, el 27 13 lo ignora.
-mensaje=['xKp=' num2str(Kp) ';Ki=' num2str(Ki) ';Kd='  num2str(Kd) ';Bias='  num2str(Bias) ';t=' num2str(t) ';\n'];
+%mensaje=['xKp=' num2str(Kp) ';Ki=' num2str(Ki) ';Kd='  num2str(Kd) ';Bias='  num2str(Bias) ';t=' num2str(t) ';\n'];
+mensaje=[Kp Ki Kd Bias];

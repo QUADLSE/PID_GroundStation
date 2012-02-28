@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.26"
+    ComputedModelVersion    "1.28"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Thu Feb 23 16:37:08 2012"
-  RTWModifiedTimeStamp	  251915789
-  ModelVersionFormat	  "1.%<AutoIncrement:26>"
+  LastModifiedDate	  "Tue Feb 28 15:57:16 2012"
+  RTWModifiedTimeStamp	  252345164
+  ModelVersionFormat	  "1.%<AutoIncrement:28>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -663,6 +663,13 @@ Model {
       DisplayMFileStacktrace  on
     }
     Block {
+      BlockType		      S-Function
+      FunctionName	      "system"
+      SFunctionModules	      "''"
+      PortCounts	      "[]"
+      SFunctionDeploymentMode off
+    }
+    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -696,7 +703,7 @@ Model {
     ShowPageBoundaries	    off
     ZoomFactor		    "125"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "32"
+    SIDHighWatermark	    "33"
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -741,7 +748,17 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "'192.168.12.112'|8889"
+      MaskValueString	      "'192.168.1.8'|58888"
+    }
+    Block {
+      BlockType		      S-Function
+      Name		      "S-Function"
+      SID		      "33"
+      Ports		      [0, 1]
+      Position		      [275, 220, 335, 250]
+      FunctionName	      "RTBlock"
+      Parameters	      "50, 'HIGH', 'TIME CRITICAL'"
+      EnableBusSupport	      off
     }
     Block {
       BlockType		      Scope
@@ -750,7 +767,7 @@ Model {
       Ports		      [2]
       Position		      [555, 86, 585, 119]
       Floating		      off
-      Location		      [818, 293, 1289, 761]
+      Location		      [804, 293, 1275, 761]
       Open		      on
       NumInputPorts	      "2"
       List {

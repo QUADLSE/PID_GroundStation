@@ -93,13 +93,11 @@ function Output(block)
   global ConnState;
   
   if strcmp(qConeccionIN.Status,'open')      
-      if strcmp(ConnState, 'REGISTERING')
-          disp('Registrando');
-          fwrite(qConeccionIN,['TELEMETRY' 13 10])
+      
           ConnState = 'STREAMING';
           readasync(qConeccionIN);
-      else
-          disp('Streaming!');
+      
+      %    disp('Streaming!');
           dataDisponible=false;
           if (qConeccionIN.BytesAvailable>=26)
               [dataDisponible, valor]=qFormatearPID_IN(qConeccionIN);
@@ -110,7 +108,7 @@ function Output(block)
                 block.OutputPort(k).Data = valor(k);
               end
          end
-      end
+      
 
   end   
 %endfunction

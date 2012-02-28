@@ -19,8 +19,7 @@ try
     % Leo los datos reales
     [A, count,msg] = fread(qConeccionIN, 6, 'float');
     
-    % Descarto el \r\n \10\13
-    fread(qConeccionIN, 2, 'uint8');
+    
     dataDisponible=(count==6);
     valor=A;
 catch me

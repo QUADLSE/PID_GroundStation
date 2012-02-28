@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.20"
+    ComputedModelVersion    "1.21"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Fri Feb 24 11:37:10 2012"
-  RTWModifiedTimeStamp	  251984064
-  ModelVersionFormat	  "1.%<AutoIncrement:20>"
+  LastModifiedDate	  "Tue Feb 28 16:02:51 2012"
+  RTWModifiedTimeStamp	  252345757
+  ModelVersionFormat	  "1.%<AutoIncrement:21>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -76,6 +76,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "qAjustePID_OUT"
+    signals_		    []
     overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
@@ -949,7 +950,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "'localhost'|8889"
+      MaskValueString	      "'192.168.1.8'|58887"
     }
     Block {
       BlockType		      Reference
@@ -981,7 +982,7 @@ Model {
       Ports		      [1]
       Position		      [765, 534, 795, 566]
       Floating		      off
-      Location		      [1, 45, 1281, 769]
+      Location		      [5, 45, 1285, 769]
       Open		      on
       NumInputPorts	      "1"
       List {

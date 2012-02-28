@@ -65,6 +65,7 @@ function InitConditions(block)
       qConeccionOUT=tcpip(host, puerto);
       try
         fopen(qConeccionOUT);
+        set(qConeccionOUT, 'ByteOrder', 'littleEndian');
       catch me
         warndlg(me.message, 'Warning');
       end
@@ -85,12 +86,7 @@ function Output(block)
   
   if strcmp(qConeccionOUT.Status,'open')  
       
-      if strcmp(ConnState, 'REGISTERING')
-          disp('Registrando');
-          fwrite(qConeccionOUT,['PID' 13 10])
-          ConnState = 'STREAMING';
-      else
-  
+       
           mandar    = block.Dwork(1).Data(6);
 
           if mandar
@@ -102,11 +98,12 @@ function Output(block)
               Bias      = block.Dwork(1).Data(5);
 
 
-              mensaje=qFormatearPID_OUT(Kp, Ki, Kd, SetPoint, Bias);
-              fprintf(qConeccionOUT, mensaje);
+              mensaje=qFormatearPID_OUT(Kp, Ki, Kd, Bias);
+              fwrite(qConeccionOUT, mensaje, 'float32');
+              fwrite(qConeccionOUT, [13 10]);
               
           end
-      end
+      
   end
    block.OutputPort(1).Data=block.Dwork(1).Data(6);
   
