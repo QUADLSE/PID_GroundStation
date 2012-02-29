@@ -6,7 +6,7 @@ Model {
     NumRootInports	    0
     NumRootOutports	    0
     ParameterArgumentNames  ""
-    ComputedModelVersion    "1.7"
+    ComputedModelVersion    "1.14"
     NumModelReferences	    0
     NumTestPointedSignals   0
   }
@@ -37,9 +37,9 @@ Model {
   ModifiedByFormat	  "%<Auto>"
   LastModifiedBy	  "claus"
   ModifiedDateFormat	  "%<Auto>"
-  LastModifiedDate	  "Tue Feb 28 19:19:58 2012"
-  RTWModifiedTimeStamp	  252347205
-  ModelVersionFormat	  "1.%<AutoIncrement:7>"
+  LastModifiedDate	  "Wed Feb 29 16:39:21 2012"
+  RTWModifiedTimeStamp	  252420803
+  ModelVersionFormat	  "1.%<AutoIncrement:14>"
   ConfigurationManager	  "None"
   SampleTimeColors	  off
   SampleTimeAnnotations	  off
@@ -76,8 +76,7 @@ Model {
     $ObjectID		    2
     $ClassName		    "Simulink.SimulationData.ModelLoggingInfo"
     model_		    "qAjustePID"
-    signals_		    []
-    overrideMode_	    [0U]
+    overrideMode_	    [0.0]
     Array {
       Type		      "Cell"
       Dimension		      1
@@ -144,7 +143,7 @@ Model {
 	  StartTime		  "0.0"
 	  StopTime		  "inf"
 	  AbsTol		  "auto"
-	  FixedStep		  "0.02"
+	  FixedStep		  "0.01"
 	  InitialStep		  "auto"
 	  MaxNumMinSteps	  "-1"
 	  MaxOrder		  5
@@ -722,6 +721,15 @@ Model {
       DisplayMFileStacktrace  on
     }
     Block {
+      BlockType		      RateTransition
+      Integrity		      on
+      Deterministic	      on
+      X0		      "0"
+      OutPortSampleTimeOpt    "Specify"
+      OutPortSampleTimeMultiple	"1"
+      OutPortSampleTime	      "-1"
+    }
+    Block {
       BlockType		      Scope
       ModelBased	      off
       TickLabels	      "OneTimeTick"
@@ -757,7 +765,7 @@ Model {
   }
   System {
     Name		    "qAjustePID"
-    Location		    [2, 70, 1262, 734]
+    Location		    [2, 70, 1278, 750]
     Open		    on
     ModelBrowserVisibility  off
     ModelBrowserWidth	    200
@@ -769,31 +777,9 @@ Model {
     TiledPaperMargins	    [0.500000, 0.500000, 0.500000, 0.500000]
     TiledPageScale	    1
     ShowPageBoundaries	    off
-    ZoomFactor		    "105"
+    ZoomFactor		    "91"
     ReportName		    "simulink-default.rpt"
-    SIDHighWatermark	    "37"
-    Block {
-      BlockType		      Reference
-      Name		      "Bias"
-      SID		      "1"
-      Ports		      [1, 1]
-      Position		      [170, 375, 200, 405]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Math\nOperations/Slider\nGain"
-      SourceType	      "Slider Gain"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      low		      "0"
-      gain		      "0"
-      high		      "200"
-    }
+    SIDHighWatermark	    "53"
     Block {
       BlockType		      BusCreator
       Name		      "Bus\nCreator"
@@ -808,9 +794,10 @@ Model {
       BlockType		      BusCreator
       Name		      "Bus\nCreator1"
       SID		      "22"
-      Ports		      [4, 1]
-      Position		      [1155, 126, 1160, 214]
+      Ports		      [2, 1]
+      Position		      [1215, 124, 1220, 171]
       ShowName		      off
+      Inputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
@@ -818,9 +805,19 @@ Model {
       Name		      "Bus\nCreator2"
       SID		      "23"
       Ports		      [3, 1]
-      Position		      [1155, 210, 1160, 270]
+      Position		      [1215, 210, 1220, 270]
       ShowName		      off
       Inputs		      "3"
+      DisplayOption	      "bar"
+    }
+    Block {
+      BlockType		      BusCreator
+      Name		      "Bus\nCreator3"
+      SID		      "50"
+      Ports		      [2, 1]
+      Position		      [205, 660, 210, 735]
+      ShowName		      off
+      Inputs		      "2"
       DisplayOption	      "bar"
     }
     Block {
@@ -848,29 +845,31 @@ Model {
       BlockType		      Constant
       Name		      "Constant3"
       SID		      "6"
-      Position		      [80, 330, 110, 360]
+      Position		      [130, 410, 160, 440]
       ShowName		      off
     }
     Block {
       BlockType		      Constant
       Name		      "Constant4"
-      SID		      "7"
-      Position		      [80, 375, 110, 405]
+      SID		      "41"
+      Position		      [130, 565, 160, 595]
       ShowName		      off
     }
     Block {
       BlockType		      Constant
       Name		      "Constant5"
-      SID		      "8"
-      Position		      [170, 265, 200, 295]
+      SID		      "39"
+      Position		      [130, 325, 160, 355]
+      ShowName		      off
       Value		      "0"
     }
     Block {
       BlockType		      Constant
       Name		      "Constant6"
-      SID		      "35"
-      Position		      [130, 515, 160, 545]
-      Value		      "150"
+      SID		      "42"
+      Position		      [130, 480, 160, 510]
+      ShowName		      off
+      Value		      "0"
     }
     Block {
       BlockType		      DataTypeConversion
@@ -881,21 +880,30 @@ Model {
       SaturateOnIntegerOverflow	off
     }
     Block {
-      BlockType		      Gain
-      Name		      "Gain"
-      SID		      "9"
-      Position		      [170, 210, 200, 240]
-      Gain		      "45"
-      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
-      OutDataTypeStr	      "Inherit: Inherit via internal rule"
-      SaturateOnIntegerOverflow	off
+      BlockType		      Scope
+      Name		      "Data being sent"
+      SID		      "16"
+      Ports		      [1]
+      Position		      [785, 579, 815, 611]
+      Floating		      off
+      Location		      [428, 276, 997, 692]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "10"
+      YMin		      "-100"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Block {
       BlockType		      Gain
-      Name		      "Gain1"
-      SID		      "36"
-      Position		      [130, 460, 160, 490]
-      Gain		      "300"
+      Name		      "Gain"
+      SID		      "53"
+      Position		      [950, 420, 980, 450]
+      Gain		      "pi/180"
       ParamDataTypeStr	      "Inherit: Inherit via internal rule"
       OutDataTypeStr	      "Inherit: Inherit via internal rule"
       SaturateOnIntegerOverflow	off
@@ -930,6 +938,27 @@ Model {
       OffsetDistance	      "0"
       OffsetAzimuth	      "0"
       GenerateFile	      off
+    }
+    Block {
+      BlockType		      Scope
+      Name		      "Joystick Axes"
+      SID		      "49"
+      Ports		      [1]
+      Position		      [280, 684, 310, 716]
+      Floating		      off
+      Location		      [355, 286, 924, 702]
+      Open		      off
+      NumInputPorts	      "1"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+      }
+      TimeRange		      "10"
+      YMin		      "0"
+      YMax		      "0.525"
+      SaveName		      "ScopeData3"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Block {
       BlockType		      Reference
@@ -972,7 +1001,7 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "0.5"
+      gain		      "0"
       high		      "5"
     }
     Block {
@@ -994,7 +1023,7 @@ Model {
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
       low		      "0"
-      gain		      "1.5"
+      gain		      "0"
       high		      "5"
     }
     Block {
@@ -1026,7 +1055,7 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "'192.168.1.8'|58887"
+      MaskValueString	      "'192.168.12.112'|58887"
     }
     Block {
       BlockType		      M-S-Function
@@ -1034,6 +1063,7 @@ Model {
       SID		      "24"
       Ports		      [0, 6]
       Position		      [865, 144, 970, 276]
+      DropShadow	      on
       FunctionName	      "qRecibirPID"
       Parameters	      "host, port"
       MaskPromptString	      "Host|Puerto"
@@ -1052,7 +1082,71 @@ Model {
       MaskIconRotate	      "none"
       MaskPortRotate	      "default"
       MaskIconUnits	      "autoscale"
-      MaskValueString	      "'192.168.1.8'|58888"
+      MaskValueString	      "'192.168.12.112'|58888"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "MAN_SetPoint"
+      SID		      "17"
+      Ports		      [1, 1]
+      Position		      [235, 410, 265, 440]
+      LibraryVersion	      "1.236"
+      SourceBlock	      "simulink/Math\nOperations/Slider\nGain"
+      SourceType	      "Slider Gain"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      low		      "0"
+      gain		      "0"
+      high		      "500"
+    }
+    Block {
+      BlockType		      Reference
+      Name		      "MAN_Throttle"
+      SID		      "44"
+      Ports		      [1, 1]
+      Position		      [235, 565, 265, 595]
+      LibraryVersion	      "1.236"
+      SourceBlock	      "simulink/Math\nOperations/Slider\nGain"
+      SourceType	      "Slider Gain"
+      ShowPortLabels	      "FromPortIcon"
+      SystemSampleTime	      "-1"
+      FunctionWithSeparateData off
+      RTWMemSecFuncInitTerm   "Inherit from model"
+      RTWMemSecFuncExecute    "Inherit from model"
+      RTWMemSecDataConstants  "Inherit from model"
+      RTWMemSecDataInternal   "Inherit from model"
+      RTWMemSecDataParameters "Inherit from model"
+      GeneratePreprocessorConditionals off
+      low		      "0"
+      gain		      "0"
+      high		      "500"
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "MAX_SetPoint"
+      SID		      "40"
+      Position		      [235, 355, 275, 395]
+      Gain		      "45"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
+    }
+    Block {
+      BlockType		      Gain
+      Name		      "MAX_Throttle"
+      SID		      "43"
+      Position		      [235, 510, 275, 550]
+      Gain		      "300"
+      ParamDataTypeStr	      "Inherit: Inherit via internal rule"
+      OutDataTypeStr	      "Inherit: Inherit via internal rule"
+      SaturateOnIntegerOverflow	off
     }
     Block {
       BlockType		      Reference
@@ -1078,7 +1172,7 @@ Model {
       Name		      "Pilot Joystick All"
       SID		      "14"
       Ports		      [0, 4]
-      Position		      [25, 213, 95, 282]
+      Position		      [15, 113, 85, 182]
       LibraryVersion	      "1.71"
       SourceBlock	      "aerolibanimutils/Pilot Joystick"
       SourceType	      "PilotJoystick"
@@ -1087,46 +1181,11 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      Scope
-      Name		      "Scope"
-      SID		      "16"
-      Ports		      [1]
-      Position		      [785, 579, 815, 611]
-      Floating		      off
-      Location		      [17, 280, 586, 696]
-      Open		      off
-      NumInputPorts	      "1"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-      }
-      TimeRange		      "10"
-      YMin		      "0"
-      YMax		      "200"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
-    }
-    Block {
-      BlockType		      Scope
-      Name		      "Scope1"
-      SID		      "26"
-      Ports		      [2]
-      Position		      [1360, 171, 1390, 204]
-      Floating		      off
-      Location		      [1, 45, 1281, 769]
-      Open		      off
-      NumInputPorts	      "2"
-      List {
-	ListType		AxesTitles
-	axes1			"%<SignalLabel>"
-	axes2			"%<SignalLabel>"
-      }
-      TimeRange		      "10"
-      YMin		      "-70~-225"
-      YMax		      "60~75"
-      SaveName		      "ScopeData2"
-      DataFormat	      "StructureWithTime"
-      SampleTime	      "0"
+      BlockType		      RateTransition
+      Name		      "Rate Transition"
+      SID		      "52"
+      Position		      [865, 414, 905, 456]
+      OutPortSampleTime	      "0.1"
     }
     Block {
       BlockType		      Reference
@@ -1144,33 +1203,34 @@ Model {
       SampleTime	      "-1"
     }
     Block {
-      BlockType		      Reference
-      Name		      "SetPoint"
-      SID		      "17"
-      Ports		      [1, 1]
-      Position		      [170, 330, 200, 360]
-      LibraryVersion	      "1.236"
-      SourceBlock	      "simulink/Math\nOperations/Slider\nGain"
-      SourceType	      "Slider Gain"
-      ShowPortLabels	      "FromPortIcon"
-      SystemSampleTime	      "-1"
-      FunctionWithSeparateData off
-      RTWMemSecFuncInitTerm   "Inherit from model"
-      RTWMemSecFuncExecute    "Inherit from model"
-      RTWMemSecDataConstants  "Inherit from model"
-      RTWMemSecDataInternal   "Inherit from model"
-      RTWMemSecDataParameters "Inherit from model"
-      GeneratePreprocessorConditionals off
-      low		      "0"
-      gain		      "0"
-      high		      "500"
+      BlockType		      Scope
+      Name		      "Setpoint + Telemetry Readings"
+      SID		      "26"
+      Ports		      [2]
+      Position		      [1360, 181, 1390, 214]
+      ShowName		      off
+      Floating		      off
+      Location		      [25, 56, 1221, 549]
+      Open		      on
+      NumInputPorts	      "2"
+      List {
+	ListType		AxesTitles
+	axes1			"%<SignalLabel>"
+	axes2			"%<SignalLabel>"
+      }
+      TimeRange		      "60"
+      YMin		      "-200~-350"
+      YMax		      "200~150"
+      SaveName		      "ScopeData2"
+      DataFormat	      "StructureWithTime"
+      SampleTime	      "0"
     }
     Block {
       BlockType		      Sum
       Name		      "Sum1"
-      SID		      "18"
+      SID		      "38"
       Ports		      [2, 1]
-      Position		      [235, 270, 255, 290]
+      Position		      [195, 330, 215, 350]
       BlockRotation	      270
       BlockMirror	      on
       NamePlacement	      "alternate"
@@ -1184,9 +1244,9 @@ Model {
     Block {
       BlockType		      Sum
       Name		      "Sum2"
-      SID		      "37"
+      SID		      "45"
       Ports		      [2, 1]
-      Position		      [195, 520, 215, 540]
+      Position		      [195, 485, 215, 505]
       BlockRotation	      270
       BlockMirror	      on
       NamePlacement	      "alternate"
@@ -1202,7 +1262,7 @@ Model {
       Name		      "Switch"
       SID		      "19"
       Ports		      [2, 1]
-      Position		      [325, 317, 355, 353]
+      Position		      [335, 347, 365, 383]
       LibraryVersion	      "1.236"
       SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
       SourceType	      "Manual Switch"
@@ -1228,9 +1288,9 @@ Model {
     Block {
       BlockType		      Reference
       Name		      "Switch1"
-      SID		      "34"
+      SID		      "46"
       Ports		      [2, 1]
-      Position		      [325, 382, 355, 418]
+      Position		      [355, 552, 385, 588]
       LibraryVersion	      "1.236"
       SourceBlock	      "simulink/Signal\nRouting/Manual Switch"
       SourceType	      "Manual Switch"
@@ -1243,7 +1303,7 @@ Model {
       RTWMemSecDataInternal   "Inherit from model"
       RTWMemSecDataParameters "Inherit from model"
       GeneratePreprocessorConditionals off
-      sw		      "0"
+      sw		      "1"
       action		      "0"
       varsize		      off
     }
@@ -1338,51 +1398,7 @@ Model {
     Line {
       SrcBlock		      "Bus\nCreator"
       SrcPort		      1
-      DstBlock		      "Scope"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Constant4"
-      SrcPort		      1
-      DstBlock		      "Bias"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Constant3"
-      SrcPort		      1
-      DstBlock		      "SetPoint"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "SetPoint"
-      SrcPort		      1
-      DstBlock		      "Switch"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Pilot Joystick All"
-      SrcPort		      1
-      DstBlock		      "Gain"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Gain"
-      SrcPort		      1
-      Points		      [40, 0]
-      DstBlock		      "Sum1"
-      DstPort		      2
-    }
-    Line {
-      SrcBlock		      "Sum1"
-      SrcPort		      1
-      Points		      [0, 30]
-      DstBlock		      "Switch"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Constant5"
-      SrcPort		      1
-      DstBlock		      "Sum1"
+      DstBlock		      "Data being sent"
       DstPort		      1
     }
     Line {
@@ -1392,18 +1408,12 @@ Model {
       DstPort		      1
     }
     Line {
+      Labels		      [2, 0]
       SrcBlock		      "Bus\nCreator1"
       SrcPort		      1
-      Points		      [140, 0; 0, 10]
-      DstBlock		      "Scope1"
+      Points		      [0, 45]
+      DstBlock		      "Setpoint + Telemetry Readings"
       DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Bus\nCreator2"
-      SrcPort		      1
-      Points		      [140, 0; 0, -45]
-      DstBlock		      "Scope1"
-      DstPort		      2
     }
     Line {
       SrcBlock		      "Pack\nnet_fdm Packet\nfor FlightGear"
@@ -1425,35 +1435,47 @@ Model {
       DstPort		      3
     }
     Line {
-      SrcBlock		      "Level-2 MATLAB\nS-Function1"
-      SrcPort		      4
-      DstBlock		      "Bus\nCreator2"
+      SrcBlock		      "Constant3"
+      SrcPort		      1
+      DstBlock		      "MAN_SetPoint"
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Bias"
+      SrcBlock		      "MAN_SetPoint"
       SrcPort		      1
-      DstBlock		      "Switch1"
-      DstPort		      1
-    }
-    Line {
-      SrcBlock		      "Switch1"
-      SrcPort		      1
-      Points		      [170, 0]
-      DstBlock		      "Level-2 MATLAB\nS-Function"
-      DstPort		      5
-    }
-    Line {
-      SrcBlock		      "Gain1"
-      SrcPort		      1
-      Points		      [40, 0]
-      DstBlock		      "Sum2"
+      Points		      [50, 0]
+      DstBlock		      "Switch"
       DstPort		      2
     }
     Line {
-      SrcBlock		      "Sum2"
+      SrcBlock		      "Constant5"
       SrcPort		      1
-      Points		      [0, 30; 75, 0; 0, -80; -35, 0; 0, -85]
+      DstBlock		      "Sum1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Sum1"
+      SrcPort		      1
+      Points		      [0, 20]
+      DstBlock		      "MAX_SetPoint"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "MAX_SetPoint"
+      SrcPort		      1
+      Points		      [30, 0; 0, -20]
+      DstBlock		      "Switch"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Constant4"
+      SrcPort		      1
+      DstBlock		      "MAN_Throttle"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "MAN_Throttle"
+      SrcPort		      1
       DstBlock		      "Switch1"
       DstPort		      2
     }
@@ -1464,52 +1486,103 @@ Model {
       DstPort		      1
     }
     Line {
-      SrcBlock		      "Pilot Joystick All"
-      SrcPort		      4
-      Points		      [40, 0; 0, 40; -80, 0; 0, 165]
-      DstBlock		      "Gain1"
+      SrcBlock		      "Sum2"
+      SrcPort		      1
+      Points		      [0, 20]
+      DstBlock		      "MAX_Throttle"
       DstPort		      1
     }
     Line {
-      Name		      "setpoint"
-      SrcBlock		      "Switch"
+      SrcBlock		      "MAX_Throttle"
       SrcPort		      1
-      Points		      [100, 0]
-      Branch {
-	Labels			[5, 0]
-	Points			[5, 0; 0, -280; 600, 0; 0, 85]
-	DstBlock		"Bus\nCreator1"
-	DstPort			1
-      }
+      Points		      [30, 0; 0, 30]
+      DstBlock		      "Switch1"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Switch1"
+      SrcPort		      1
+      Points		      [30, 0; 0, -180; 30, 0]
       Branch {
 	DstBlock		"Level-2 MATLAB\nS-Function"
-	DstPort			4
+	DstPort			5
+      }
+      Branch {
+	Points			[0, 235]
+	DstBlock		"Bus\nCreator"
+	DstPort			5
       }
     }
     Line {
-      SrcBlock		      "Level-2 MATLAB\nS-Function1"
-      SrcPort		      1
-      Points		      [20, 0]
+      SrcBlock		      "Pilot Joystick All"
+      SrcPort		      4
+      Points		      [10, 0; 0, 295]
       Branch {
-	DstBlock		"Bus\nCreator1"
+	Points			[105, 0]
+	DstBlock		"Sum2"
 	DstPort			2
       }
       Branch {
-	Points			[0, -5; -5, 0; 0, 280]
-	DstBlock		"Data Type Conversion"
+	Points			[0, 250]
+	DstBlock		"Bus\nCreator3"
+	DstPort			2
+      }
+    }
+    Line {
+      Labels		      [2, 0]
+      SrcBlock		      "Pilot Joystick All"
+      SrcPort		      1
+      Points		      [30, 0; 0, 185]
+      Branch {
+	Points			[0, 0; 85, 0]
+	DstBlock		"Sum1"
+	DstPort			2
+      }
+      Branch {
+	Points			[0, 370]
+	DstBlock		"Bus\nCreator3"
 	DstPort			1
       }
     }
     Line {
-      SrcBlock		      "Level-2 MATLAB\nS-Function1"
-      SrcPort		      3
-      DstBlock		      "Bus\nCreator1"
+      SrcBlock		      "Bus\nCreator3"
+      SrcPort		      1
+      DstBlock		      "Joystick Axes"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Rate Transition"
+      SrcPort		      1
+      DstBlock		      "Gain"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Gain"
+      SrcPort		      1
+      DstBlock		      "Data Type Conversion"
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Bus\nCreator2"
+      SrcPort		      1
+      Points		      [80, 0; 0, -35]
+      DstBlock		      "Setpoint + Telemetry Readings"
+      DstPort		      2
+    }
+    Line {
+      Name		      "setpoint"
+      Labels		      [0, 0; 0, 0]
+      SrcBlock		      "Switch"
+      SrcPort		      1
+      Points		      [160, 0]
+      DstBlock		      "Level-2 MATLAB\nS-Function"
       DstPort		      4
     }
     Line {
       SrcBlock		      "Level-2 MATLAB\nS-Function1"
-      SrcPort		      5
-      DstBlock		      "Bus\nCreator2"
+      SrcPort		      3
+      Points		      [225, 0]
+      DstBlock		      "Bus\nCreator1"
       DstPort		      2
     }
     Line {
@@ -1520,9 +1593,25 @@ Model {
     }
     Line {
       SrcBlock		      "Level-2 MATLAB\nS-Function1"
-      SrcPort		      2
+      SrcPort		      1
+      Points		      [110, 0; 0, -25]
       DstBlock		      "Bus\nCreator1"
-      DstPort		      3
+      DstPort		      1
+    }
+    Line {
+      SrcBlock		      "Level-2 MATLAB\nS-Function1"
+      SrcPort		      5
+      DstBlock		      "Bus\nCreator2"
+      DstPort		      2
+    }
+    Line {
+      SrcBlock		      "Level-2 MATLAB\nS-Function1"
+      SrcPort		      4
+      DstBlock		      "Bus\nCreator2"
+      DstPort		      1
+    }
+    Annotation {
+      Position		      [434, 374]
     }
   }
 }

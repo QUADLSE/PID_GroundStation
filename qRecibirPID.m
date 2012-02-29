@@ -82,6 +82,7 @@ function InitConditions(block)
         warndlg(me.message, 'Warning');
       end
       ConnState = 'REGISTERING';
+      readasync(qConeccionIN);
      
   end
     
@@ -92,22 +93,25 @@ function Output(block)
   global qConeccionIN;
   global ConnState;
   
-  if strcmp(qConeccionIN.Status,'open')      
+  if strcmp(qConeccionIN.Status,'open')
       
-          ConnState = 'STREAMING';
-          readasync(qConeccionIN);
-      
-      %    disp('Streaming!');
+      ConnState = 'STREAMING';
+      if (1)
+          
+          
+          
+          %    disp('Streaming!');
           dataDisponible=false;
           if (qConeccionIN.BytesAvailable>=26)
               [dataDisponible, valor]=qFormatearPID_IN(qConeccionIN);
           end
           if dataDisponible
               %disp(valor);
-              for k=1:block.NumOutputPorts                 %block.NumOutputPorts      
-                block.OutputPort(k).Data = valor(k);
+              for k=1:block.NumOutputPorts                 %block.NumOutputPorts
+                  block.OutputPort(k).Data = valor(k);
               end
-         end
+          end
+      end
       
 
   end   
